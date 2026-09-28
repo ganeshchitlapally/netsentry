@@ -1,0 +1,44 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+
+# --- Tooling caches ---
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+
+# --- Secrets ---
+.env
+.env.*
+!.env.example
+
+# --- Data and model binaries (never committed; regenerate with make data / make train) ---
+/data/
+/artifacts/
+*.csv.gz
+*.parquet
+*.pkl
+*.joblib
+*.pt
+*.pth
+*.onnx
+*.ubj
+
+# --- MLflow local tracking ---
+/mlruns/
+/mlartifacts/
+mlflow.db
+
+# --- Editors / OS ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
