@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      # Tests must never need real API keys.
+      NETSENTRY_LLM_PROVIDER: mock
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: astral-sh/setup-uv@v10
+        with:
+          version: "0.12.20"
+          enable-cache: true
+
+      - name: Install Python 3.11 and locked dependencies
+        run: |
+          uv python install 3.11
+          uv sync --locked
+
+      - name: Lint
+        run: |
+          uv run ruff check .
+          uv run ruff format --check .
+
+      - name: Test
+        run: uv run pytest --cov --cov-report=term-missing
