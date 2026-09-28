@@ -17,8 +17,9 @@ setup: ## Create .venv from uv.lock (exact pins) and install pre-commit hooks
 	$(UV) sync --locked
 	@if [ -d .git ]; then $(RUN) pre-commit install; fi
 
-data: ## Download UNSW-NB15 and verify checksums
-	$(call NOT_YET,Phase 1)
+data: ## Verify UNSW-NB15 (import with FROM=<dir>) and write dataset stats + leakage audit
+	$(RUN) python scripts/download_data.py $(if $(FROM),--from "$(FROM)")
+	$(RUN) python scripts/data_report.py
 
 train: ## Train baselines and anomaly detectors (logged to MLflow)
 	$(call NOT_YET,Phase 2)
