@@ -1,0 +1,165 @@
+{
+  "provenance": {
+    "script": "scripts/data_report.py",
+    "git_commit": "4136f697bf7c8ef461fecc7774dbeefd522ed78e",
+    "git_dirty": false,
+    "generated_at_utc": "2026-09-28T23:55:55+00:00",
+    "python": "3.11.16"
+  },
+  "config": {
+    "seed": 42,
+    "validation_fraction": 0.2
+  },
+  "official_splits": {
+    "train": {
+      "rows": 175341,
+      "attack_rows": 119341,
+      "normal_rows": 56000,
+      "attack_fraction": 0.6806,
+      "attack_cat_counts": {
+        "Normal": 56000,
+        "Generic": 40000,
+        "Exploits": 33393,
+        "Fuzzers": 18184,
+        "DoS": 12264,
+        "Reconnaissance": 10491,
+        "Analysis": 2000,
+        "Backdoor": 1746,
+        "Shellcode": 1133,
+        "Worms": 130
+      }
+    },
+    "test": {
+      "rows": 82332,
+      "attack_rows": 45332,
+      "normal_rows": 37000,
+      "attack_fraction": 0.5506,
+      "attack_cat_counts": {
+        "Normal": 37000,
+        "Generic": 18871,
+        "Exploits": 11132,
+        "Fuzzers": 6062,
+        "DoS": 4089,
+        "Reconnaissance": 3496,
+        "Analysis": 677,
+        "Backdoor": 583,
+        "Shellcode": 378,
+        "Worms": 44
+      }
+    }
+  },
+  "working_splits": {
+    "train": {
+      "rows": 140273,
+      "attack_rows": 95473,
+      "normal_rows": 44800,
+      "attack_fraction": 0.6806,
+      "attack_cat_counts": {
+        "Normal": 44800,
+        "Generic": 32000,
+        "Exploits": 26714,
+        "Fuzzers": 14547,
+        "DoS": 9811,
+        "Reconnaissance": 8393,
+        "Analysis": 1600,
+        "Backdoor": 1397,
+        "Shellcode": 907,
+        "Worms": 104
+      }
+    },
+    "validation": {
+      "rows": 35068,
+      "attack_rows": 23868,
+      "normal_rows": 11200,
+      "attack_fraction": 0.6806,
+      "attack_cat_counts": {
+        "Normal": 11200,
+        "Generic": 8000,
+        "Exploits": 6679,
+        "Fuzzers": 3637,
+        "DoS": 2453,
+        "Reconnaissance": 2098,
+        "Analysis": 400,
+        "Backdoor": 349,
+        "Shellcode": 226,
+        "Worms": 26
+      }
+    },
+    "duplicate_groups_shared_between_train_and_validation": 0
+  },
+  "duplicates": {
+    "train": {
+      "unique_feature_vectors": 101040,
+      "rows_duplicating_an_earlier_row": 74301,
+      "vectors_with_conflicting_label": 229,
+      "vectors_with_conflicting_attack_cat": 1772
+    },
+    "test": {
+      "unique_feature_vectors": 53946,
+      "rows_duplicating_an_earlier_row": 28386,
+      "vectors_with_conflicting_label": 6,
+      "vectors_with_conflicting_attack_cat": 575
+    }
+  },
+  "test_rows_with_exact_match_in_train": {
+    "rows": 8541,
+    "fraction": 0.1037,
+    "by_attack_cat": {
+      "DoS": 2004,
+      "Exploits": 1802,
+      "Generic": 1722,
+      "Normal": 1472,
+      "Reconnaissance": 1138,
+      "Fuzzers": 261,
+      "Analysis": 125,
+      "Shellcode": 13,
+      "Backdoor": 4
+    }
+  },
+  "categorical_cardinality": {
+    "proto": {
+      "train": 133,
+      "test": 131,
+      "test_values_unseen_in_train": []
+    },
+    "service": {
+      "train": 13,
+      "test": 13,
+      "test_values_unseen_in_train": []
+    },
+    "state": {
+      "train": 9,
+      "test": 7,
+      "test_values_unseen_in_train": [
+        "ACC",
+        "CLO"
+      ]
+    }
+  },
+  "leakage": {
+    "always_dropped": {
+      "id": "row counter; encodes file position, not flow behaviour",
+      "label": "binary target",
+      "attack_cat": "multiclass target (label is derived from it)"
+    },
+    "ttl_ablation_features": [
+      "sttl",
+      "dttl",
+      "ct_state_ttl"
+    ],
+    "flagged_single_feature_auc_gt_0.9": [
+      "id"
+    ],
+    "top5_single_feature_auc": {
+      "id": 0.9506,
+      "sttl": 0.8828,
+      "ct_state_ttl": 0.8714,
+      "dload": 0.8661,
+      "dmean": 0.819
+    },
+    "best_single_sttl_threshold_rule_on_train": {
+      "rule": "sttl >= 62",
+      "train_accuracy": 0.9216
+    }
+  }
+}
