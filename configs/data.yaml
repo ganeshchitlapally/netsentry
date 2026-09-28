@@ -1,0 +1,7 @@
+# Dataset and split settings. Paths are relative to the repo root.
+seed: 42
+raw_dir: data/raw
+processed_dir: data/processed
+# Validation set is carved (stratified) from the official UNSW-NB15 training split.
+# The official test split is only touched for final evaluation, never for tuning.
+validation_fraction: 0.2
